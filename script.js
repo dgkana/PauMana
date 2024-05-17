@@ -6,12 +6,16 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
     var note = document.getElementById('note').value;
     var photoFile = document.getElementById('photo').files[0];
 
+    if (!photoFile) {
+        alert('Please take a photo.');
+        return;
+    }
+
     var reader = new FileReader();
     reader.onloadend = function() {
         var photoData = reader.result;
 
-        // Send the data to Google Apps Script
-        fetch('https://script.google.com/macros/s/AKfycbwleyGXuxOz2QEKesrYroAOb2IBNMIf_LIbHRGSfH2fioYwtwxTtasE-m6k5gDK7HXy/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbzusyhNLLvvu8QtG9kZLKGGM1lTT5KdToX5qh44B1ADxaJF-veDhU5NNUDe2z2Zz6br/exec', {
             method: 'POST',
             body: JSON.stringify({
                 unitNumber: unitNumber,
@@ -27,7 +31,14 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
               alert('Data saved successfully!');
           }).catch(error => {
               console.error('Error:', error);
+              alert('An error occurred: ' + error.message);
           });
     };
+
+    reader.onerror = function() {
+        console.error('File could not be read! Code ' + reader.error.code);
+        alert('Failed to read file.');
+    };
+
     reader.readAsDataURL(photoFile);
 });
