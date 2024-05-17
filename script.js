@@ -11,7 +11,7 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
         var photoData = reader.result;
 
         // Send the data to Google Apps Script
-        fetch('https://script.google.com/a/macros/kanahiku.com/s/AKfycbyKMGVtMIk6x9ZqiJf7cS8zJkxDEsWGAhTkJ0S7BxWSxnlHPTdsG6LlIxS9d-MZaV7L/exec', {
+        fetch('https://script.google.com/macros/s/AKfycby6LgwU6W_EbFhp7ZnZOlcikO3qMMvoYwQBDLqxpZ-D_RdjBOlZqHmfR8D504KubKQN/exec', {
             method: 'POST',
             body: JSON.stringify({
                 unitNumber: unitNumber,
