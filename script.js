@@ -15,7 +15,7 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
     reader.onloadend = function() {
         var photoData = reader.result;
 
-        fetch('https://script.google.com/macros/s/AKfycbzusyhNLLvvu8QtG9kZLKGGM1lTT5KdToX5qh44B1ADxaJF-veDhU5NNUDe2z2Zz6br/exec', {
+        fetch('https://script.google.com/macros/s/AKfycby-I1jdHgZv2-HPh0m6gqbFTMrs6XBcPaF5wetXqugXZXRMptE9kDPzbuuujHTlpMyf/exec', {
             method: 'POST',
             body: JSON.stringify({
                 unitNumber: unitNumber,
@@ -26,13 +26,20 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(response => response.json())
-          .then(data => {
-              alert('Data saved successfully!');
-          }).catch(error => {
-              console.error('Error:', error);
-              alert('An error occurred: ' + error.message);
-          });
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Data saved successfully!');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred: ' + error.message);
+        });
     };
 
     reader.onerror = function() {
@@ -40,5 +47,10 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
         alert('Failed to read file.');
     };
 
-    reader.readAsDataURL(photoFile);
+    try {
+        reader.readAsDataURL(photoFile);
+    } catch (err) {
+        console.error('Error reading file:', err);
+        alert('An error occurred while reading the file.');
+    }
 });
