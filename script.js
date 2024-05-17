@@ -11,7 +11,7 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
         var photoData = reader.result;
 
         // Send the data to Google Apps Script
-        fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+        fetch('AKfycbyCRJNC98Fz2Tu9_Ha9DcGtfnhtt3tXj59ciwAjXuq-kJzYe3XsbtTNjrXKm2cqYFKs', {
             method: 'POST',
             body: JSON.stringify({
                 unitNumber: unitNumber,
