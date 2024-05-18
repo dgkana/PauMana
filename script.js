@@ -15,7 +15,7 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
     reader.onloadend = function() {
         var photoData = reader.result;
 
-        fetch('https://script.google.com/macros/s/AKfycbxxaHG60AqPgnQADgCy9uzpvSkCxSQc08rzzOdn1jXnTdY8eSjq_hM0KApm6wcE81VA/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbz7jyQwdQiptI2qNsi3uAeDf6jl-XJHgSfRB12Ke7BrYuENVERd0CStF-yX8JxQPZcX/exec', {
             method: 'POST',
             body: JSON.stringify({
                 unitNumber: unitNumber,
