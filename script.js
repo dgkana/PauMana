@@ -15,13 +15,13 @@ document.getElementById('inspection-form').addEventListener('submit', function(e
     reader.onloadend = function() {
         var photoData = reader.result;
 
-        fetch('https://script.google.com/macros/s/AKfycby-I1jdHgZv2-HPh0m6gqbFTMrs6XBcPaF5wetXqugXZXRMptE9kDPzbuuujHTlpMyf/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbxxaHG60AqPgnQADgCy9uzpvSkCxSQc08rzzOdn1jXnTdY8eSjq_hM0KApm6wcE81VA/exec', {
             method: 'POST',
             body: JSON.stringify({
                 unitNumber: unitNumber,
                 issue: issue,
                 note: note,
-                photoData: photoData
+                photoFile: photoData
             }),
             headers: {
                 'Content-Type': 'application/json'
